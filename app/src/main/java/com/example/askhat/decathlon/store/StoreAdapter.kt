@@ -10,6 +10,7 @@ import com.example.askhat.decathlon.R
 import com.example.askhat.decathlon.entities.Product
 import kotlinx.android.synthetic.main.item_store_product.view.*
 
+
 class StoreAdapter(private val context : Context,
                    private val items : ArrayList<Product>,
                    private val listener : ProductItemClicked)

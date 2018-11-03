@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+											 android:layout_width="300dp"
+											 android:layout_height="270dp"
+											 xmlns:app="http://schemas.android.com/apk/res-auto">
+	
+<TextView
+		android:id="@+id/titleEvent"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text="Марафон"
+		android:textSize="20sp"
+		android:textColor="@color/colorPrimary"
+		app:layout_constraintTop_toTopOf="parent"
+		android:layout_marginTop="16dp"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintEnd_toEndOf="parent"
+		/>
+	<TextView
+			android:id="@+id/distance"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="Дистанция:"
+			android:textColor="@color/colorPrimary"
+			android:textSize="20sp"
+			android:layout_marginStart="20dp"
+			android:layout_marginTop="20dp"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toBottomOf="@id/titleEvent"
+	/>
+	<Spinner
+			app:layout_constraintStart_toEndOf="@id/distance"
+			app:layout_constraintTop_toTopOf="@+id/distance"
+			app:layout_constraintBottom_toBottomOf="@id/distance"
+			android:layout_marginStart="8dp"
+			android:id="@+id/spinner1"
+			android:layout_width="120dp"
+			android:layout_height="40dp"
+			android:background="@android:drawable/btn_dropdown"
+			android:spinnerMode="dropdown"/>
+	<TextView
+			android:id="@+id/infoEvent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintEnd_toEndOf="parent"
+			android:layout_marginTop="12dp"
+			android:textSize="15sp"
+			app:layout_constraintTop_toBottomOf="@id/distance"
+			android:layout_marginStart="8dp"
+			android:layout_marginEnd="8dp"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:text="Дорогие участники Осеннего забега!
+10 ноября состоится завершающий в этом году сезонный Осенний забег в рамках подготовки к «Алматы марафону» 2019."
+	/>
+	<TextView
+			android:id="@+id/priceEvent"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="Цена: 3000тг"
+			android:textColor="@color/colorPrimary"
+			android:textSize="20sp"
+			app:layout_constraintStart_toStartOf="@id/infoEvent"
+			app:layout_constraintTop_toBottomOf="@id/infoEvent"
+			android:layout_marginTop="15dp"
+			app:layout_constraintBottom_toBottomOf="parent"
+			android:layout_marginBottom="10dp"
+	/>
+	<android.support.constraint.ConstraintLayout
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_margin="8dp"
+			android:background="@drawable/bonus_bg"
+			app:layout_constraintStart_toEndOf="@id/priceEvent"
+			app:layout_constraintTop_toTopOf="@id/priceEvent"
+			app:layout_constraintBottom_toBottomOf="@id/priceEvent"
+	>
+		
+		<TextView
+				android:id="@+id/bonusTextView"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_margin="8dp"
+				android:text="+500"
+				android:textStyle="bold"
+				android:textColor="#eee"
+				android:textSize="16sp"
+				app:layout_constraintBottom_toBottomOf="parent"
+				app:layout_constraintLeft_toLeftOf="parent"
+				app:layout_constraintTop_toTopOf="parent" />
+		
+		<TextView
+				android:id="@+id/bonusTextViewRight"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_margin="8dp"
+				android:text="decopoints"
+				android:textColor="#fff"
+				android:textSize="16sp"
+				app:layout_constraintBottom_toBottomOf="parent"
+				app:layout_constraintLeft_toRightOf="@id/bonusTextView"
+				app:layout_constraintRight_toRightOf="parent"
+				
+				app:layout_constraintTop_toTopOf="parent" app:layout_constraintHorizontal_bias="0.0"
+				app:layout_constraintVertical_bias="0.0"/>
+	
+	</android.support.constraint.ConstraintLayout>
+</android.support.constraint.ConstraintLayout>

@@ -19,7 +19,7 @@ class EventsFragment: Fragment(){
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        eventList.adapter = EventListAdapter(context)
+        eventList.adapter = EventListAdapter(context!!)
         eventList.layoutManager = LinearLayoutManager(context)
 
     }
