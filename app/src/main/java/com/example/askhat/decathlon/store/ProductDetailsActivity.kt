@@ -42,13 +42,14 @@ class ProductDetailsActivity : AppCompatActivity() {
         detailsLikeFab.setOnClickListener{ view ->
             if(isFav == 1){
                 isFav = 0
+                product.favorite = 0
                 detailsLikeFab.setImageResource(R.drawable.ic_favorite_border)
             }else{
                 isFav = 1
+                product.favorite = 1
                 detailsLikeFab.setImageResource(R.drawable.ic_favorite)
             }
-            if(isFav == 1) product.favorite = 1
-            else product.favorite = 0
+
             service.updateProduct(product)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())

@@ -2,7 +2,6 @@ package com.example.askhat.decathlon.menu
 
 import android.os.Bundle
 import android.support.design.widget.NavigationView
-import android.support.design.widget.Snackbar
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.view.GravityCompat
@@ -11,6 +10,7 @@ import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import com.example.askhat.decathlon.R
+import com.example.askhat.decathlon.basket.BasketFragment
 import com.example.askhat.decathlon.clubs.ClubsFragment
 import com.example.askhat.decathlon.events.EventsFragment
 import com.example.askhat.decathlon.store.StoreFragment
@@ -74,6 +74,10 @@ class MainMenuActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
             }
             R.id.nav_history -> {
 
+            }
+            R.id.nav_basket -> {
+                toolbar.title = "Корзина"
+                currentFragment = BasketFragment()
             }
         }
         fragmentManager.beginTransaction().replace(R.id.content,currentFragment!!).commit()

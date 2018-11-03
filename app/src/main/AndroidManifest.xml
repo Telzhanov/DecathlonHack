@@ -14,8 +14,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".MainActivity"></activity>
-        <activity android:name=".auth.LoginActivity"></activity>
+        <activity android:name=".MainActivity" />
+        <activity android:name=".auth.LoginActivity" />
         <activity
             android:name=".menu.MainMenuActivity"
             android:label="@string/title_activity_main_menu"
@@ -26,7 +26,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".store.ProductDetailsActivity"></activity>
+        <activity android:name=".store.ProductDetailsActivity" />
+        <activity android:name=".clubs.ClubsDetailsActivity"></activity>
     </application>
 
 </manifest>
