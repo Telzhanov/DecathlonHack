@@ -8,29 +8,32 @@ import com.google.gson.annotations.SerializedName
 
 @SuppressLint("ParcelCreator")
 data class Product(
+        @SerializedName("id") var id: String,
         @SerializedName("title") var title: String,
         @SerializedName("description") var description: String,
         @SerializedName("size") var size: String,
         @SerializedName("price") var price: Int,
         @SerializedName("photos") var photos: String,
-        @SerializedName("favorite") var favorite: Boolean
+        @SerializedName("favorite") var favorite: Int
 ) : Parcelable {
     constructor(parcel: Parcel) : this(
             parcel.readString(),
             parcel.readString(),
             parcel.readString(),
+            parcel.readString(),
             parcel.readInt(),
             parcel.readString(),
-            parcel.readByte() != 0.toByte()) {
+            parcel.readInt()) {
     }
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
+        parcel.writeString(id)
         parcel.writeString(title)
         parcel.writeString(description)
         parcel.writeString(size)
         parcel.writeInt(price)
         parcel.writeString(photos)
-        parcel.writeByte(if (favorite) 1 else 0)
+        parcel.writeInt(favorite)
     }
 
     override fun describeContents(): Int {
