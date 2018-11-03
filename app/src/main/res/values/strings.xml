@@ -1,0 +1,30 @@
+<resources>
+    <string name="app_name">Decathlon</string>
+
+    <string name="login_title">Вход в личный кабинет</string>
+    <string name="login_hint_email">E-mail</string>
+    <string name="login_hint_password">Пароль</string>
+    <string name="login_sign_in_button">Войти</string>
+    <string name="login_register_text">Регистрация</string>
+    <string name="login_hint_forgot_password">Забыли свои данные для входа?</string>
+    <string name="login_forgot_password_text">
+        <u>Восстановить пароль</u>
+    </string>
+    <string name="login_content_description">Background</string>
+    <string name="login_dar">
+        <b>DAR</b>
+    </string>
+    <string name="login_logistics">Decathlon</string>
+    <string name="login_auth_error">Ошибка при входе</string>
+    <string name="login_empty_email">Введите свой E-mail</string>
+    <string name="login_empty_password">Введите свой пароль</string>
+    <string name="login_call_to_admins">Свяжитесь с администрацией DAR Logistics</string>
+    <string name="login_unknow_error">Произошла ошибка, проверьте соединение с интернетом</string>
+    <string name="title_activity_main_menu">MainMenuActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+</resources>
