@@ -61,7 +61,7 @@ class MainMenuActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
         // Handle navigation view item clicks here.
         when (item.itemId) {
             R.id.nav_camera -> {
-                // Handle the camera action
+
             }
             R.id.nav_gallery -> {
 

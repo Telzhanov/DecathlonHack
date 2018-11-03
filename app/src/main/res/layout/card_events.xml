@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+		android:layout_margin="10dp"
+		android:layout_height="150dp" xmlns:android="http://schemas.android.com/apk/res/android"
+		android:layout_width="match_parent" xmlns:app="http://schemas.android.com/apk/res-auto"
+		xmlns:card_view="http://schemas.android.com/tools">
+	<android.support.constraint.ConstraintLayout android:layout_width="match_parent"
+												 android:layout_height="match_parent"
+	>
+		<ImageView
+				android:id="@+id/backgroundCard"
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				android:background="@drawable/thriatlon"/>
+		<TextView
+				android:id="@+id/time"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				app:layout_constraintTop_toTopOf="parent"
+				app:layout_constraintStart_toStartOf="parent"
+				android:text="06:00, 4 ноября"
+				android:textColor="@color/colorWhite"
+				android:textSize="20sp"
+				android:textStyle="bold"
+				android:layout_marginStart="20dp"
+				android:layout_marginTop="10dp"
+		/>
+		<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:id="@+id/nameMarathon"
+				android:text="Триатлон"
+				android:textColor="@color/colorWhite"
+				app:layout_constraintBottom_toBottomOf="parent"
+				android:layout_marginBottom="20dp"
+				android:textStyle="bold"
+				app:layout_constraintStart_toStartOf="@id/time"
+				android:layout_marginTop="20dp"
+				android:textSize="22sp"
+		
+		/>
+		<Button
+				android:layout_width="wrap_content"
+				android:layout_height="30dp"
+				android:text="Участвовать"
+				android:textSize="10sp"
+				android:textStyle="bold"
+				app:layout_constraintEnd_toEndOf="parent"
+				app:layout_constraintBottom_toBottomOf="@id/nameMarathon"
+				android:textColor="@color/colorWhite"
+				android:background="@drawable/button_style"
+				android:layout_marginEnd="16dp"/>
+	</android.support.constraint.ConstraintLayout>
+
+	
+</android.support.v7.widget.CardView>
