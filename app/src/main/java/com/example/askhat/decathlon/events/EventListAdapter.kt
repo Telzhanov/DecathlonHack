@@ -37,6 +37,7 @@ class EventListAdapter(var context: Context):RecyclerView.Adapter<RecyclerView.V
                 distances.add("3км")
                 distances.add("11км")
                 distances.add("21км")
+
                 var adapter:ArrayAdapter<String> = ArrayAdapter(context,android.R.layout.simple_dropdown_item_1line,distances)
                 spinner.adapter = adapter
                 builder.setView(view)
