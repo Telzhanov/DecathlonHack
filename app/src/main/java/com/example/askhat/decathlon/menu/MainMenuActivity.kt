@@ -14,6 +14,7 @@ import android.view.MenuItem
 import com.example.askhat.decathlon.R
 import com.example.askhat.decathlon.auth.LoginActivity
 import com.example.askhat.decathlon.auth.User
+import com.example.askhat.decathlon.basket.BasketFragment
 import com.example.askhat.decathlon.clubs.ClubsFragment
 import com.example.askhat.decathlon.core.util.Logger
 import com.example.askhat.decathlon.events.EventService
@@ -100,6 +101,10 @@ class MainMenuActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
             }
             R.id.nav_history -> {
 
+            }
+            R.id.nav_basket -> {
+                toolbar.title = "Корзина"
+                currentFragment = BasketFragment()
             }
         }
         fragmentManager.beginTransaction().replace(R.id.content,currentFragment!!).commit()
