@@ -30,7 +30,9 @@ class MainMenuActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
     var currentFragment:Fragment?=null
     var fragmentManager: FragmentManager = supportFragmentManager
     val eventService:EventService by inject()
-    var user:User?=null
+    companion object {
+        var user:User?=null
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main_menu)
