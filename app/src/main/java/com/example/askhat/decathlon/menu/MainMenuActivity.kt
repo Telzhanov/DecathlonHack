@@ -13,6 +13,7 @@ import android.view.MenuItem
 import com.example.askhat.decathlon.R
 import com.example.askhat.decathlon.clubs.ClubsFragment
 import com.example.askhat.decathlon.events.EventsFragment
+import com.example.askhat.decathlon.store.StoreFragment
 import kotlinx.android.synthetic.main.activity_main_menu.*
 import kotlinx.android.synthetic.main.app_bar_main_menu.*
 
@@ -64,7 +65,8 @@ class MainMenuActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
                 currentFragment = EventsFragment()
             }
             R.id.nav_store -> {
-
+                toolbar.title = "Магазин"
+                currentFragment = StoreFragment()
             }
             R.id.nav_clubs -> {
                 toolbar.title = "Спортивные клубы"
