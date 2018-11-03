@@ -28,9 +28,9 @@ fun createOkHttpClient(): OkHttpClient {
 /**
  * Creates AuthService from okHttp client
  */
-inline fun <reified T> createService(okHttpClient: OkHttpClient): T {
+inline fun <reified T> createService(okHttpClient: OkHttpClient, url: String): T {
     val retrofit = Retrofit.Builder()
-        .baseUrl("")
+        .baseUrl(url)
         .client(okHttpClient)
         .addConverterFactory(GsonConverterFactory.create())
         .addCallAdapterFactory(RxErrorHandlingCallAdapterFactory.create()).build()

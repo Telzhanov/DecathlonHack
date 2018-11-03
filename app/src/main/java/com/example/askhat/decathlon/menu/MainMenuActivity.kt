@@ -2,13 +2,14 @@ package com.example.askhat.decathlon.menu
 
 import android.os.Bundle
 import android.support.design.widget.NavigationView
-import android.support.design.widget.Snackbar
+import android.support.v4.app.Fragment
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import com.example.askhat.decathlon.R
+import com.example.askhat.decathlon.store.StoreFragment
 import kotlinx.android.synthetic.main.activity_main_menu.*
 import kotlinx.android.synthetic.main.app_bar_main_menu.*
 
@@ -18,11 +19,6 @@ class MainMenuActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main_menu)
         setSupportActionBar(toolbar)
-
-        fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
-        }
 
         val toggle = ActionBarDrawerToggle(
             this, drawer_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close
@@ -64,7 +60,7 @@ class MainMenuActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
                 // Handle the camera action
             }
             R.id.nav_store -> {
-
+                createFragment(StoreFragment(), R.id.container)
             }
             R.id.nav_clubs -> {
 
@@ -76,5 +72,12 @@ class MainMenuActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
 
         drawer_layout.closeDrawer(GravityCompat.START)
         return true
+    }
+
+    private fun createFragment(fragment: Fragment, layoutContainer: Int) {
+        supportFragmentManager.beginTransaction()
+                .replace(layoutContainer, fragment)
+                //.addToBackStack(null)
+                .commit()
     }
 }
