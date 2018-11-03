@@ -32,14 +32,20 @@ class StoreAdapter(private val context : Context,
                     .into(p0.itemView.imageViewCardProduct)
         }
         p0.itemView.textViewPriceProduct.text = product.price.toString()
+        if(items[p1].favorite == 0){
+            p0.itemView.imageViewFavoriteProductLike.setBackgroundResource(R.drawable.ic_favorite_border)
+        }else{
+            p0.itemView.imageViewFavoriteProductLike.setBackgroundResource(R.drawable.ic_favorite)
+        }
+
 
         p0.itemView.imageViewFavoriteProductLike.setOnClickListener {
-            if(!items[p1].favorite){
-                items[p1].favorite = true
+            if(items[p1].favorite == 0){
+                items[p1].favorite = 1
                 listener.onProductLiked(items[p1])
                 p0.itemView.imageViewFavoriteProductLike.setBackgroundResource(R.drawable.ic_favorite)
             }else{
-                items[p1].favorite = false
+                items[p1].favorite = 0
                 listener.onProductLiked(items[p1])
                 p0.itemView.imageViewFavoriteProductLike.setBackgroundResource(R.drawable.ic_favorite_border)
             }

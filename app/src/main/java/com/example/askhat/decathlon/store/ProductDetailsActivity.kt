@@ -13,7 +13,7 @@ import org.koin.android.ext.android.inject
 
 class ProductDetailsActivity : AppCompatActivity() {
 
-    private var isFav = false
+    private var isFav = 0
     private val service: StoreService by inject()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,7 +21,8 @@ class ProductDetailsActivity : AppCompatActivity() {
 
         val product = intent.getParcelableExtra<Product>(EXTRA_DETAILS)
 
-        if(product.favorite){
+
+        if(product.favorite == 1){
             isFav = product.favorite
             detailsLikeFab.setImageResource(R.drawable.ic_favorite)
         }else{
@@ -33,17 +34,21 @@ class ProductDetailsActivity : AppCompatActivity() {
                 .load(product.photos)
                 .into(main_backdrop)
 
-
+        tvTitle.text = product.title
+        tvContent.text = product.description
+        tvPrice.text = product.price.toString()
+        tvSize.text = product.size
 
         detailsLikeFab.setOnClickListener{ view ->
-            if(isFav){
-                isFav = !isFav
+            if(isFav == 1){
+                isFav = 0
                 detailsLikeFab.setImageResource(R.drawable.ic_favorite_border)
             }else{
-                isFav = !isFav
+                isFav = 1
                 detailsLikeFab.setImageResource(R.drawable.ic_favorite)
             }
-            product.favorite = !isFav
+            if(isFav == 1) product.favorite = 1
+            else product.favorite = 0
             service.updateProduct(product)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
@@ -56,5 +61,11 @@ class ProductDetailsActivity : AppCompatActivity() {
                             })
         }
         Logger.msg("accepted", product)
+
+
+        buyProductBtn.setOnClickListener{
+
+        }
     }
+
 }
