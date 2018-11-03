@@ -125,4 +125,5 @@
             android:background="@color/colorPrimary"
             android:text="@string/login_register_text"
             android:textColor="@color/colorWhite" />
+    
 </android.support.constraint.ConstraintLayout>

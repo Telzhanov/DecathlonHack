@@ -13,21 +13,36 @@ import android.view.Menu
 import android.view.MenuItem
 import com.example.askhat.decathlon.R
 import com.example.askhat.decathlon.auth.LoginActivity
+import com.example.askhat.decathlon.auth.User
 import com.example.askhat.decathlon.clubs.ClubsFragment
+import com.example.askhat.decathlon.core.util.Logger
+import com.example.askhat.decathlon.events.EventService
 import com.example.askhat.decathlon.events.EventsFragment
 import com.example.askhat.decathlon.store.StoreFragment
 import kotlinx.android.synthetic.main.activity_main_menu.*
 import kotlinx.android.synthetic.main.app_bar_main_menu.*
+import kotlinx.android.synthetic.main.nav_header_main_menu.*
+import kotlinx.android.synthetic.main.nav_header_main_menu.view.*
+import org.koin.android.ext.android.inject
 
 class MainMenuActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
     var currentFragment:Fragment?=null
     var fragmentManager: FragmentManager = supportFragmentManager
+    val eventService:EventService by inject()
+    var user:User?=null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main_menu)
         setSupportActionBar(toolbar)
+        var intent = intent
+        user = intent.getSerializableExtra("user") as User
         toolbar.title = "Мероприятий"
         var eventsFragment = EventsFragment()
+        var headerView = nav_view.getHeaderView(0)
+        Logger.msg(user)
+        headerView.textViewUserName.text = user?.name
+        headerView.bonusTextView.text = user?.decopoint.toString()
+        headerView.textViewUserEmail.text = user?.email
         fragmentManager.beginTransaction().add(R.id.content,eventsFragment).commit()
         val toggle = ActionBarDrawerToggle(
             this, drawer_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close
@@ -37,7 +52,11 @@ class MainMenuActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
         nav_view.setNavigationItemSelectedListener(this)
 
     }
-
+    fun updatePoints(points:Int){
+        var headerView = nav_view.getHeaderView(0)
+        headerView.textViewUserName.text = user?.name
+        headerView.bonusTextView.text = (user?.decopoint?.plus(points)).toString()
+    }
     override fun onBackPressed() {
         if (drawer_layout.isDrawerOpen(GravityCompat.START)) {
             drawer_layout.closeDrawer(GravityCompat.START)
@@ -69,7 +88,7 @@ class MainMenuActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
         when (item.itemId) {
             R.id.nav_news -> {
                 toolbar.title = "Мероприятий"
-                currentFragment = EventsFragment()
+               currentFragment =  EventsFragment.newInstance(eventService)
             }
             R.id.nav_store -> {
                 toolbar.title = "Магазин"
