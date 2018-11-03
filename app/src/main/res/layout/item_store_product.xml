@@ -25,6 +25,18 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@id/imageViewCardProduct" />
 
+    <TextView
+        android:id="@+id/textViewPriceProductLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="$"
+        android:textSize="16dp"
+        android:textColor="#333"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/textViewPriceProduct"
+        app:layout_constraintTop_toBottomOf="@id/imageViewCardProduct" />
+
     <ImageView
         android:id="@+id/imageViewFavoriteProductLike"
         android:layout_width="16dp"

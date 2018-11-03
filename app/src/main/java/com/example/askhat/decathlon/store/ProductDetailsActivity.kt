@@ -2,18 +2,59 @@ package com.example.askhat.decathlon.store
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import com.bumptech.glide.Glide
 import com.example.askhat.decathlon.R
 import com.example.askhat.decathlon.core.util.Logger
 import com.example.askhat.decathlon.entities.Product
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
+import kotlinx.android.synthetic.main.activity_product_details.*
+import org.koin.android.ext.android.inject
 
 class ProductDetailsActivity : AppCompatActivity() {
 
+    private var isFav = false
+    private val service: StoreService by inject()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_product_details)
 
         val product = intent.getParcelableExtra<Product>(EXTRA_DETAILS)
 
+        if(product.favorite){
+            isFav = product.favorite
+            detailsLikeFab.setImageResource(R.drawable.ic_favorite)
+        }else{
+            isFav = product.favorite
+            detailsLikeFab.setImageResource(R.drawable.ic_favorite_border)
+        }
+//        main_backdrop.setImageURI(product.photos)
+        Glide.with(this)
+                .load(product.photos)
+                .into(main_backdrop)
+
+
+
+        detailsLikeFab.setOnClickListener{ view ->
+            if(isFav){
+                isFav = !isFav
+                detailsLikeFab.setImageResource(R.drawable.ic_favorite_border)
+            }else{
+                isFav = !isFav
+                detailsLikeFab.setImageResource(R.drawable.ic_favorite)
+            }
+            product.favorite = !isFav
+            service.updateProduct(product)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(
+                            {
+                                Logger.msg("accepted", it.string())
+                            },
+                            {
+                                Logger.msg("accepted", it.message)
+                            })
+        }
         Logger.msg("accepted", product)
     }
 }

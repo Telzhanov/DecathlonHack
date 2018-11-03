@@ -18,11 +18,9 @@ import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.fragment_store.*
 import org.koin.android.ext.android.inject
 
-
 const val EXTRA_DETAILS = "EXTRA_DETAILS"
 
 class StoreFragment : Fragment(), StoreAdapter.ProductItemClicked {
-
 
     private val service: StoreService by inject()
 
@@ -52,8 +50,18 @@ class StoreFragment : Fragment(), StoreAdapter.ProductItemClicked {
         recyclerStore.adapter = StoreAdapter(activity!!, products, this)
     }
 
+    @SuppressLint("CheckResult")
     override fun onProductLiked(product: Product) {
-
+        service.updateProduct(product)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        {
+                            Logger.msg("accepted", it.string())
+                        },
+                        {
+                            Logger.msg("accepted", it.message)
+                        })
     }
 
     override fun onProductClicked(product: Product) {
