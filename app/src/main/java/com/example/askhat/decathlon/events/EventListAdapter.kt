@@ -12,6 +12,7 @@ import android.widget.ArrayAdapter
 import android.widget.Spinner
 import android.widget.TextView
 import com.example.askhat.decathlon.R
+import com.example.askhat.decathlon.entities.Event
 import com.example.askhat.decathlon.menu.MainMenuActivity
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers

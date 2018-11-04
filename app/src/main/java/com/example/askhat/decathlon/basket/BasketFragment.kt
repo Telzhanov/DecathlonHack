@@ -13,6 +13,7 @@ import android.view.ViewGroup
 import com.example.askhat.decathlon.R
 import com.example.askhat.decathlon.core.util.Logger
 import com.example.askhat.decathlon.entities.Product
+import com.example.askhat.decathlon.menu.MainMenuActivity
 import com.example.askhat.decathlon.store.EXTRA_DETAILS
 import com.example.askhat.decathlon.store.ProductDetailsActivity
 import com.example.askhat.decathlon.store.StoreAdapter
@@ -40,7 +41,7 @@ class BasketFragment : Fragment(), StoreAdapter.ProductItemClicked {
 
     @SuppressLint("CheckResult")
     private fun getProducts(){
-        service.getProducts()
+        service.getProducts(MainMenuActivity.user!!.id)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
@@ -63,7 +64,7 @@ class BasketFragment : Fragment(), StoreAdapter.ProductItemClicked {
 
     @SuppressLint("CheckResult")
     override fun onProductLiked(product: Product) {
-        service.updateProduct(product)
+        service.updateProduct(MainMenuActivity.user!!.id, product.id)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(

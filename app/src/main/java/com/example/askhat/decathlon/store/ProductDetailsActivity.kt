@@ -6,6 +6,7 @@ import com.bumptech.glide.Glide
 import com.example.askhat.decathlon.R
 import com.example.askhat.decathlon.core.util.Logger
 import com.example.askhat.decathlon.entities.Product
+import com.example.askhat.decathlon.menu.MainMenuActivity
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_product_details.*
@@ -50,7 +51,7 @@ class ProductDetailsActivity : AppCompatActivity() {
                 detailsLikeFab.setImageResource(R.drawable.ic_favorite)
             }
 
-            service.updateProduct(product)
+            service.updateProduct(MainMenuActivity.user!!.id, product.id)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(

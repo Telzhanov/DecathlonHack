@@ -1,10 +1,11 @@
 package com.example.askhat.decathlon.events
 
+import com.example.askhat.decathlon.entities.Event
+import com.example.askhat.decathlon.entities.EventResponse
 import io.reactivex.Observable
 import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.Query
-import java.io.Serializable
 
 interface EventService{
     @GET("get_events")

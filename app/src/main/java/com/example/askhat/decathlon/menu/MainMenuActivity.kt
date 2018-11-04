@@ -3,7 +3,6 @@ package com.example.askhat.decathlon.menu
 import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.NavigationView
-import android.support.design.widget.Snackbar
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.view.GravityCompat
@@ -19,10 +18,10 @@ import com.example.askhat.decathlon.clubs.ClubsFragment
 import com.example.askhat.decathlon.core.util.Logger
 import com.example.askhat.decathlon.events.EventService
 import com.example.askhat.decathlon.events.EventsFragment
+import com.example.askhat.decathlon.history.HistoryFragment
 import com.example.askhat.decathlon.store.StoreFragment
 import kotlinx.android.synthetic.main.activity_main_menu.*
 import kotlinx.android.synthetic.main.app_bar_main_menu.*
-import kotlinx.android.synthetic.main.nav_header_main_menu.*
 import kotlinx.android.synthetic.main.nav_header_main_menu.view.*
 import org.koin.android.ext.android.inject
 
@@ -102,7 +101,8 @@ class MainMenuActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
                 currentFragment = ClubsFragment()
             }
             R.id.nav_history -> {
-
+                toolbar.title = "История"
+                currentFragment = HistoryFragment()
             }
             R.id.nav_basket -> {
                 toolbar.title = "Корзина"
