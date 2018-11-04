@@ -14,7 +14,8 @@ data class Product(
         @SerializedName("size") var size: String,
         @SerializedName("price") var price: Int,
         @SerializedName("photos") var photos: String,
-        @SerializedName("favorite") var favorite: Int
+        @SerializedName("favorite") var favorite: Int,
+        @SerializedName("docoins") var docoins : Int
 ) : Parcelable {
     constructor(parcel: Parcel) : this(
             parcel.readInt(),
@@ -23,6 +24,7 @@ data class Product(
             parcel.readString(),
             parcel.readInt(),
             parcel.readString(),
+            parcel.readInt(),
             parcel.readInt()) {
     }
 
@@ -34,6 +36,7 @@ data class Product(
         parcel.writeInt(price)
         parcel.writeString(photos)
         parcel.writeInt(favorite)
+        parcel.writeInt(docoins)
     }
 
     override fun describeContents(): Int {
