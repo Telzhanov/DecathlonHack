@@ -8,27 +8,29 @@
             android:id="@+id/nav_news"
             android:checked="true"
             android:icon="@drawable/ic_home_black_24dp"
-            android:title="Home" />
-        <item
-            android:id="@+id/nav_profile"
-            android:icon="@drawable/ic_account_circle_black_24dp"
-            android:title="Profile" />
+            android:title="Главная" />
+
         <item
             android:id="@+id/nav_store"
             android:icon="@drawable/ic_shopping_cart_black_24dp"
-            android:title="Store" />
+            android:title="Магазин" />
         <item
             android:id="@+id/nav_clubs"
             android:icon="@drawable/ic_directions_bike_black_24dp"
-            android:title="Sport clubs" />
+            android:title="Спорт клубы" />
         <item
             android:id="@+id/nav_history"
             android:icon="@drawable/ic_history_black_24dp"
-            android:title="History" />
+            android:title="История" />
         <item
             android:id="@+id/nav_basket"
             android:icon="@drawable/ic_shopping_basket_black_24dp"
-            android:title="Basket" />
+            android:title="Корзина" />
+
+        <item
+                android:id="@+id/nav_about"
+                android:icon="@drawable/ic_info_outline_black_24dp"
+                android:title="О нас" />
     </group>
 
 </menu>
