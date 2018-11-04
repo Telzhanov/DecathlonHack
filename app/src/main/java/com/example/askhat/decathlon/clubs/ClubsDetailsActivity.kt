@@ -2,6 +2,7 @@ package com.example.askhat.decathlon.clubs
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.support.v7.app.ActionBar
 import android.support.v7.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.example.askhat.decathlon.R
@@ -21,6 +22,15 @@ class ClubsDetailsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_clubs_details)
+
+        setSupportActionBar(findViewById(R.id.toolbar_club_details))
+        val actionbar: ActionBar? = supportActionBar
+        actionbar?.apply {
+            this.setDisplayHomeAsUpEnabled(true)
+            this.setDisplayShowHomeEnabled(true)
+            this.setHomeAsUpIndicator(R.drawable.ic_arrow_back_black_24dp)
+        }
+
 
         val club = intent.getParcelableExtra<Club>(EXTRA_CLUB_DETAILS)
 
@@ -59,6 +69,11 @@ class ClubsDetailsActivity : AppCompatActivity() {
 
             subscribe(club)
         }
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
     }
 
 
