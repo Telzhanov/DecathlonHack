@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.content.DialogInterface
 import android.os.Bundle
+import android.support.v7.app.ActionBar
 import android.support.v7.app.AppCompatActivity
 import android.view.LayoutInflater
 import android.view.View
@@ -33,7 +34,13 @@ class ProductDetailsActivity : AppCompatActivity() {
         setContentView(R.layout.activity_product_details)
 
         val product = intent.getParcelableExtra<Product>(EXTRA_DETAILS)
-
+        setSupportActionBar(findViewById(R.id.toolbar_product_details))
+        val actionbar: ActionBar? = supportActionBar
+        actionbar?.apply {
+            this.setDisplayHomeAsUpEnabled(true)
+            this.setDisplayShowHomeEnabled(true)
+            this.setHomeAsUpIndicator(R.drawable.ic_arrow_back_black_24dp)
+        }
 
         if(product.favorite == 1){
             isFav = product.favorite
@@ -112,6 +119,11 @@ class ProductDetailsActivity : AppCompatActivity() {
                     .create()
                     .show()
         }
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
     }
 
 }

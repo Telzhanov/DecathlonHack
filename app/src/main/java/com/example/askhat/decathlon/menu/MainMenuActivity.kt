@@ -1,5 +1,6 @@
 package com.example.askhat.decathlon.menu
 
+import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.NavigationView
@@ -7,6 +8,7 @@ import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
+import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
@@ -24,6 +26,7 @@ import kotlinx.android.synthetic.main.activity_main_menu.*
 import kotlinx.android.synthetic.main.app_bar_main_menu.*
 import kotlinx.android.synthetic.main.nav_header_main_menu.view.*
 import org.koin.android.ext.android.inject
+
 
 class MainMenuActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
     var currentFragment:Fragment?=null
@@ -111,6 +114,21 @@ class MainMenuActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
             R.id.nav_basket -> {
                 toolbar.title = "Корзина"
                 currentFragment = BasketFragment()
+            }
+
+            R.id.nav_about -> {
+                val builder = AlertDialog.Builder(this)
+                builder.setMessage("The app was developed by: \nNursultan Almakhanov\nAskhat Telzhanov\nAibek Bekbayev" +
+                        "\nElibay Nuptebek\nAnvar Umarov\nAisultan Kali\n" +
+                        "French Hackathon\nAlmaty 2018")
+                        .setPositiveButton("Good!", DialogInterface.OnClickListener { dialog, id ->
+                            // FIRE ZE MISSILES!
+                        })
+                // Create the AlertDialog object and return it
+                builder.create()
+                drawer_layout.closeDrawer(GravityCompat.START)
+                builder.show()
+                return true
             }
         }
         fragmentManager.beginTransaction().replace(R.id.content,currentFragment!!).commit()

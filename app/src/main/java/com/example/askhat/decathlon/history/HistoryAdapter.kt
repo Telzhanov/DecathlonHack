@@ -1,12 +1,15 @@
 package com.example.askhat.decathlon.history
 
+import android.annotation.SuppressLint
 import android.content.Context
+import android.support.v4.content.ContextCompat
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.bumptech.glide.Glide
 import com.example.askhat.decathlon.R
+import com.example.askhat.decathlon.core.util.Logger
 import com.example.askhat.decathlon.entities.Club
 import com.example.askhat.decathlon.entities.Event
 import com.example.askhat.decathlon.entities.Product
@@ -46,41 +49,65 @@ class HistoryAdapter(private val context: Context,
         return dataset.size
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (holder) {
             is ClubListViewHolder -> {
+                Logger.msg("accepted", "ClubListViewHolder")
                 val obj = dataset[position] as Club
-                holder.itemView.historyType.text = obj.title
-                holder.itemView.historyPrice.text = obj.price.toString()
-                holder.itemView.historyType.text = obj.javaClass.name
+                holder.itemView.historyTitle.text = obj.title
+                holder.itemView.historyPrice.text = "Цена: "+obj.price.toString()
+                holder.itemView.historyType.text = "Тип: "+obj.javaClass.simpleName
                 if (obj.photos != "") {
                     Glide.with(context)
                             .load(obj.photos)
                             .into(holder.itemView.bgIVHistory)
+                }
+
+                if(obj.decocoins > 0){
+                    holder.itemView.historyBonus.text = "+"+obj.decocoins.toString()
+                }else{
+                    holder.itemView.historyBonus.text = obj.decocoins.toString()
+                    holder.itemView.historyBonus.setTextColor(ContextCompat.getColor(context, R.color.colorLoginPurple))
                 }
                 holder.itemView.setOnClickListener {
                     listener.onItemClicked(obj)
                 }
             }
             is ProductListViewHolder -> {
+                Logger.msg("accepted", "ProductListViewHolder")
                 val obj = dataset[position] as Product
-                holder.itemView.historyType.text = obj.title
-                holder.itemView.historyPrice.text = obj.price.toString()
-                holder.itemView.historyType.text = obj.javaClass.name
+                holder.itemView.historyTitle.text = obj.title
+                holder.itemView.historyPrice.text = "Цена: "+obj.price.toString()
+                holder.itemView.historyType.text = "Тип: "+obj.javaClass.simpleName
                 if (obj.photos != "") {
                     Glide.with(context)
                             .load(obj.photos)
                             .into(holder.itemView.bgIVHistory)
                 }
+                if(obj.docoins > 0){
+                    holder.itemView.historyBonus.text = "+"+obj.docoins.toString()
+                }else{
+                    holder.itemView.historyBonus.text = obj.docoins.toString()
+                    holder.itemView.historyBonus.setTextColor(ContextCompat.getColor(context, R.color.colorLoginPurple))
+                }
+
                 holder.itemView.setOnClickListener {
                     listener.onItemClicked(obj)
                 }
             }
             is EventListViewHolder -> {
+                Logger.msg("accepted", "EventListViewHolder")
                 val obj = dataset[position] as Event
-                holder.itemView.historyType.text = obj.title
-                holder.itemView.historyPrice.text = obj.price.toString()
-                holder.itemView.historyType.text = obj.javaClass.name
+                holder.itemView.historyTitle.text = obj.title
+                holder.itemView.historyPrice.text = "Цена: "+obj.price.toString()
+                holder.itemView.historyType.text = "Тип: "+obj.javaClass.simpleName
+                if(obj.docoins > 0){
+                    holder.itemView.historyBonus.text = "+"+obj.docoins.toString()
+                }else{
+                    holder.itemView.historyBonus.text = obj.docoins.toString()
+                    holder.itemView.historyBonus.setTextColor(ContextCompat.getColor(context, R.color.colorLoginPurple))
+                }
                 if (obj.photos != "") {
                     Glide.with(context)
                             .load(obj.photos)
