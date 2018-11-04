@@ -8,7 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.askhat.decathlon.R
-import com.example.askhat.decathlon.core.util.Logger
+import com.example.askhat.decathlon.entities.Event
 import com.example.askhat.decathlon.menu.MainMenuActivity
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers

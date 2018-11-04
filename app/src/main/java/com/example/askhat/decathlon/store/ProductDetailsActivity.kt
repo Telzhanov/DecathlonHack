@@ -62,7 +62,7 @@ class ProductDetailsActivity : AppCompatActivity() {
                 detailsLikeFab.setImageResource(R.drawable.ic_favorite)
             }
 
-            service.updateProduct(product)
+            service.updateProduct(MainMenuActivity.user!!.id, product.id)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(

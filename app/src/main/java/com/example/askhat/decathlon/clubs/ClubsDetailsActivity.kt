@@ -65,7 +65,7 @@ class ClubsDetailsActivity : AppCompatActivity() {
     @SuppressLint("CheckResult")
     private fun subscribe(club: Club){
         club.subscriber = true
-        service.updateClub(club, MainMenuActivity.user!!.id)
+        service.updateClub(club.id, MainMenuActivity.user!!.id)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(

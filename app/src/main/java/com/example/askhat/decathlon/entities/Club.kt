@@ -7,6 +7,7 @@ import com.google.gson.annotations.SerializedName
 
 @SuppressLint("ParcelCreator")
 data class Club(
+        @SerializedName("id") var id : Int,
         @SerializedName("title") var title: String,
         @SerializedName("description") var description: String,
         @SerializedName("price") var price:Int,
@@ -14,6 +15,7 @@ data class Club(
         @SerializedName("subscriber") var subscriber: Boolean
 ) : Parcelable {
     constructor(parcel: Parcel) : this(
+            parcel.readInt(),
             parcel.readString(),
             parcel.readString(),
             parcel.readInt(),
@@ -22,6 +24,7 @@ data class Club(
     }
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
+        parcel.writeInt(id)
         parcel.writeString(title)
         parcel.writeString(description)
         parcel.writeInt(price)

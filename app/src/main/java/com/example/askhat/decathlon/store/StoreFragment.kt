@@ -13,6 +13,7 @@ import android.view.ViewGroup
 import com.example.askhat.decathlon.R
 import com.example.askhat.decathlon.core.util.Logger
 import com.example.askhat.decathlon.entities.Product
+import com.example.askhat.decathlon.menu.MainMenuActivity
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.fragment_store.*
@@ -33,7 +34,7 @@ class StoreFragment : Fragment(), StoreAdapter.ProductItemClicked {
     @SuppressLint("CheckResult")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        service.getProducts()
+        service.getProducts(MainMenuActivity.user!!.id)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
@@ -52,7 +53,7 @@ class StoreFragment : Fragment(), StoreAdapter.ProductItemClicked {
 
     @SuppressLint("CheckResult")
     override fun onProductLiked(product: Product) {
-        service.updateProduct(product)
+        service.updateProduct(MainMenuActivity.user!!.id, product.id)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
