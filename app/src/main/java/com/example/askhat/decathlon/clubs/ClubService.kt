@@ -6,13 +6,15 @@ import okhttp3.ResponseBody
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
+import retrofit2.http.Query
 
 interface ClubService {
 
     @GET("get_clubs/")
-    fun getClubs() : Observable<List<Club>>
+    fun getClubs(@Query("user_id") id: Int) : Observable<List<Club>>
 
     @POST("update_product/")
-    fun updateClub(@Body post: Club) : Observable<ResponseBody>
+    fun updateClub(@Body post: Club,
+                   @Query("user_id") id: Int) : Observable<ResponseBody>
 
 }

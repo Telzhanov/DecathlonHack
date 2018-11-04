@@ -28,6 +28,7 @@
             android:theme="@style/AppTheme">
         </activity>
         <activity android:name=".store.ProductDetailsActivity"></activity>
+        <activity android:name=".clubs.ClubsDetailsActivity"/>
     </application>
 
 </manifest>

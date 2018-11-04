@@ -1,15 +1,11 @@
 package com.example.askhat.decathlon.auth
 
 import android.content.Intent
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Parcelable
+import android.support.v7.app.AppCompatActivity
 import android.view.View
 import com.example.askhat.decathlon.R
-import com.example.askhat.decathlon.core.util.Logger
 import com.example.askhat.decathlon.menu.MainMenuActivity
-import io.reactivex.Observable
-import io.reactivex.Scheduler
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_login.*
@@ -22,7 +18,7 @@ class LoginActivity() : AppCompatActivity(),LoginContract.LoginView {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
         presenter.attachView(this)
-        loginSignInButton.setOnClickListener {
+        loginSignInButton.setOnClickListener { _ ->
             progressBar.visibility= View.VISIBLE
             loginSignInButton.text = ""
             service.authorize(loginEmailEditText.text.toString(),loginPasswordEditText.text.toString())
