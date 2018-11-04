@@ -41,7 +41,7 @@ class MainMenuActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
         setSupportActionBar(toolbar)
         var intent = intent
         user = intent.getSerializableExtra("user") as User
-        toolbar.title = "Мероприятий"
+        toolbar.title = "Мероприятия"
         var eventsFragment = EventsFragment()
         var headerView = nav_view.getHeaderView(0)
         Logger.msg(user)

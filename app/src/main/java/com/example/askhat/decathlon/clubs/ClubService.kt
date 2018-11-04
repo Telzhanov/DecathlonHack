@@ -1,5 +1,6 @@
 package com.example.askhat.decathlon.store
 
+import com.example.askhat.decathlon.clubs.ClubResponse
 import com.example.askhat.decathlon.entities.Club
 import io.reactivex.Observable
 import okhttp3.ResponseBody
@@ -14,6 +15,6 @@ interface ClubService {
 
     @POST("subscribe_club/")
     fun updateClub(@Query ("club_id") club_id: Int,
-                   @Query("user_id") id: Int) : Observable<ResponseBody>
+                   @Query("user_id") id: Int) : Observable<ClubResponse>
 
 }
