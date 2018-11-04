@@ -13,6 +13,7 @@ import android.widget.Spinner
 import android.widget.TextView
 import com.example.askhat.decathlon.R
 import com.example.askhat.decathlon.menu.MainMenuActivity
+import com.example.askhat.decathlon.menu.MainMenuActivity.Companion.user
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.card_events.view.*
@@ -36,45 +37,52 @@ class EventListAdapter(var context: Context,var events:ArrayList<Event>):Recycle
         else{
             holder.itemView.backgroundCard.setBackgroundResource(R.drawable.thriatlon)
         }
-        holder.itemView.participate.setOnClickListener {
-            var builder = AlertDialog.Builder(context)
-            builder.setTitle("Регистрация на событие")
-            var view: View = LayoutInflater.from(context).inflate(R.layout.sign_up_event,null)
-            var spinner: Spinner = view.findViewById(R.id.spinner1)
-            var title: TextView = view.findViewById(R.id.titleEvent)
-            var desc :TextView = view.findViewById(R.id.infoEvent)
-            var price:TextView = view.findViewById(R.id.priceEvent)
-            var bonus :TextView = view.findViewById(R.id.bonusTextView)
-            title.text = events[position].title
-            desc.text = events[position].description
-            bonus.text = events[position].docoins.toString()
-            var distances = ArrayList<String>()
-            distances.add("3км")
-            distances.add("11км")
-            distances.add("21км")
-
-            var adapter:ArrayAdapter<String> = ArrayAdapter(context,android.R.layout.simple_dropdown_item_1line,distances)
-            spinner.adapter = adapter
-            builder.setView(view)
-                .setPositiveButton("Принять участие",object:DialogInterface.OnClickListener{
-                    @SuppressLint("CheckResult")
-                    override fun onClick(dialog: DialogInterface?, which: Int) {
-                        (context as MainMenuActivity).eventService.subscribe((context as MainMenuActivity).user?.id!!,events[position].id)
-                            .subscribeOn(Schedulers.io())
-                            .observeOn(AndroidSchedulers.mainThread())
-                            .subscribe {
-                                (context as MainMenuActivity).updatePoints(it.coins)
+        for (event in user!!.subscriptions){
+            if (event==events[position].id){
+                holder.itemView.participate.text = "Вы участник"
+            }
+        }
+        if (!holder.itemView.participate.text.equals("Вы участник")){
+            holder.itemView.participate.setOnClickListener {
+                var builder = AlertDialog.Builder(context)
+                builder.setTitle("Регистрация на событие")
+                var view: View = LayoutInflater.from(context).inflate(R.layout.sign_up_event,null)
+                var spinner: Spinner = view.findViewById(R.id.spinner1)
+                var title: TextView = view.findViewById(R.id.titleEvent)
+                var desc :TextView = view.findViewById(R.id.infoEvent)
+                var price:TextView = view.findViewById(R.id.priceEvent)
+                var bonus :TextView = view.findViewById(R.id.bonusTextView)
+                title.text = events[position].title
+                desc.text = events[position].description
+                bonus.text = events[position].docoins.toString()
+                var distances = ArrayList<String>()
+                distances.add("3км")
+                distances.add("11км")
+                distances.add("21км")
+                var adapter:ArrayAdapter<String> = ArrayAdapter(context,android.R.layout.simple_dropdown_item_1line,distances)
+                spinner.adapter = adapter
+                builder.setView(view)
+                        .setPositiveButton("Принять участие",object:DialogInterface.OnClickListener{
+                            @SuppressLint("CheckResult")
+                            override fun onClick(dialog: DialogInterface?, which: Int) {
+                                (context as MainMenuActivity).eventService.subscribe(user?.id!!,events[position].id)
+                                        .subscribeOn(Schedulers.io())
+                                        .observeOn(AndroidSchedulers.mainThread())
+                                        .subscribe {
+                                            (context as MainMenuActivity).updatePoints(it.coins)
+                                            holder.itemView.participate.text = "Вы участник"
+                                        }
                             }
-                    }
-                })
-                .setNegativeButton("Отмена", object:DialogInterface.OnClickListener{
-                    override fun onClick(dialog: DialogInterface?, which: Int) {
+                        })
+                        .setNegativeButton("Отмена", object:DialogInterface.OnClickListener{
+                            override fun onClick(dialog: DialogInterface?, which: Int) {
 
-                    }
+                            }
 
-                })
-                .create()
-                .show()
+                        })
+                        .create()
+                        .show()
+            }
         }
     }
 

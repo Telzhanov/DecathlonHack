@@ -21,5 +21,5 @@ data class User(
     @SerializedName("photos") val photos: String,
     @SerializedName("products") val products: Any,
     @SerializedName("size") val size: String,
-    @SerializedName("subscriptions") val subscriptions: List<Any>
+    @SerializedName("subscriptions") val subscriptions: List<Int>
 ):Serializable
