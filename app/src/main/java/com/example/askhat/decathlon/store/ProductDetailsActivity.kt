@@ -16,6 +16,7 @@ import com.example.askhat.decathlon.R
 import com.example.askhat.decathlon.core.util.Logger
 import com.example.askhat.decathlon.entities.Product
 import com.example.askhat.decathlon.menu.MainMenuActivity
+import com.example.askhat.decathlon.menu.MainMenuActivity.Companion.user
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_product_details.*
@@ -84,14 +85,22 @@ class ProductDetailsActivity : AppCompatActivity() {
             var price:TextView = view.findViewById(R.id.priceProduct)
             var ostatok:TextView = view.findViewById(R.id.ostatok)
             var summa:EditText = view.findViewById(R.id.summaCoin)
+            var tagiplus:TextView = view.findViewById(R.id.bonusTextView)
             tovar.text = product?.title
             price.text = product?.price.toString() + "Тн."
             ostatok.text = "( Остаток:" + MainMenuActivity.user?.decopoint + ")"
+            tagiplus.text = "+" + product?.docoins.toString()
             builder.setView(view)
                     .setPositiveButton("Купить",object: DialogInterface.OnClickListener{
                         @SuppressLint("CheckResult")
                         override fun onClick(dialog: DialogInterface?, which: Int) {
-
+                            service.buyProduct(MainMenuActivity.user?.id!!,product.id,summa.text.toString().toInt())
+                                    .subscribeOn(Schedulers.io())
+                                    .observeOn(AndroidSchedulers.mainThread())
+                                    .subscribe{
+                                        user = it.user
+                                        finish()
+                                    }
                         }
                     })
                     .setNegativeButton("Отмена", object: DialogInterface.OnClickListener{

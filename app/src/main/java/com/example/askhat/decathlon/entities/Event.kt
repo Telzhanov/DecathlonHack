@@ -2,6 +2,7 @@ package com.example.askhat.decathlon.entities
 
 import android.os.Parcel
 import android.os.Parcelable
+import com.example.askhat.decathlon.auth.User
 import com.google.gson.annotations.SerializedName
 
 data class Event(
@@ -53,5 +54,6 @@ data class Event(
 
 data class EventResponse(
     @SerializedName("code") val code:Int,
-    @SerializedName("new_coins") val coins:Int
+    @SerializedName("new_coins") val coins:Int,
+    @SerializedName("user") val user: User
 )

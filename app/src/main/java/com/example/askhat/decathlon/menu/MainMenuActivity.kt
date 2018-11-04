@@ -56,8 +56,7 @@ class MainMenuActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
     }
     fun updatePoints(points:Int){
         var headerView = nav_view.getHeaderView(0)
-        headerView.textViewUserName.text = user?.name
-        headerView.bonusTextView.text = (user?.decopoint?.plus(points)).toString()
+        headerView.bonusTextView.text = points.toString()
     }
     override fun onBackPressed() {
         if (drawer_layout.isDrawerOpen(GravityCompat.START)) {
@@ -67,6 +66,11 @@ class MainMenuActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        var headerView = nav_view.getHeaderView(0)
+        headerView.bonusTextView.text = user?.decopoint.toString()
+    }
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
 
         menuInflater.inflate(R.menu.main_menu, menu)

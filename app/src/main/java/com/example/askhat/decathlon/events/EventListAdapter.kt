@@ -71,6 +71,7 @@ class EventListAdapter(var context: Context,var events:ArrayList<Event>):Recycle
                                         .observeOn(AndroidSchedulers.mainThread())
                                         .subscribe {
                                             (context as MainMenuActivity).updatePoints(it.coins)
+                                            user = it.user
                                             holder.itemView.participate.text = "Вы участник"
                                         }
                             }

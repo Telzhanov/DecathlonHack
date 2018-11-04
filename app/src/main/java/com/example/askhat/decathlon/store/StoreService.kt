@@ -15,5 +15,8 @@ interface StoreService {
     @POST("update_product/")
     fun updateProduct(@Query("user_id") user_id: Int,
                       @Query("product_id") product_id:Int) : Observable<ResponseBody>
-
+    @POST("buy_product/")
+    fun buyProduct(@Query("user_id") user_id: Int,
+                   @Query("product_id") product_id: Int,
+                   @Query("used_coins") used_coin:Int):Observable<ProductResponse>
 }
