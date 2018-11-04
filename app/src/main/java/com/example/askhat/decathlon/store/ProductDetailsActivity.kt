@@ -1,15 +1,27 @@
 package com.example.askhat.decathlon.store
 
+import android.annotation.SuppressLint
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.view.LayoutInflater
+import android.view.View
+import android.widget.ArrayAdapter
+import android.widget.EditText
+import android.widget.Spinner
+import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.example.askhat.decathlon.R
 import com.example.askhat.decathlon.core.util.Logger
 import com.example.askhat.decathlon.entities.Product
+import com.example.askhat.decathlon.menu.MainMenuActivity
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_product_details.*
+import kotlinx.android.synthetic.main.card_events.view.*
 import org.koin.android.ext.android.inject
+import org.w3c.dom.Text
 
 class ProductDetailsActivity : AppCompatActivity() {
 
@@ -65,7 +77,31 @@ class ProductDetailsActivity : AppCompatActivity() {
 
 
         buyProductBtn.setOnClickListener{
+            var builder = AlertDialog.Builder(this)
+            builder.setTitle("Покупка товара")
+            var view: View = LayoutInflater.from(this).inflate(R.layout.buy_product_dialog,null)
+            var tovar:TextView = view.findViewById(R.id.nameProduct)
+            var price:TextView = view.findViewById(R.id.priceProduct)
+            var ostatok:TextView = view.findViewById(R.id.ostatok)
+            var summa:EditText = view.findViewById(R.id.summaCoin)
+            tovar.text = product?.title
+            price.text = product?.price.toString() + "Тн."
+            ostatok.text = "( Остаток:" + MainMenuActivity.user?.decopoint + ")"
+            builder.setView(view)
+                    .setPositiveButton("Купить",object: DialogInterface.OnClickListener{
+                        @SuppressLint("CheckResult")
+                        override fun onClick(dialog: DialogInterface?, which: Int) {
 
+                        }
+                    })
+                    .setNegativeButton("Отмена", object: DialogInterface.OnClickListener{
+                        override fun onClick(dialog: DialogInterface?, which: Int) {
+
+                        }
+
+                    })
+                    .create()
+                    .show()
         }
     }
 

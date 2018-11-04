@@ -31,8 +31,10 @@ class EventsFragment: Fragment(){
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe {
                 listEvents = it as ArrayList<Event>
+                progress.visibility = View.GONE
                 eventList.adapter = EventListAdapter(context!!,listEvents)
                 eventList.layoutManager = LinearLayoutManager(context)
+
             }
 
 

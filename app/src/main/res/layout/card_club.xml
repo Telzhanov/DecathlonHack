@@ -11,8 +11,7 @@
         <ImageView
             android:id="@+id/imageClub"
             android:layout_width="match_parent"
-            android:layout_height="160dp"
-            android:background="@drawable/darfit" />
+            android:layout_height="160dp"/>
 
         <TextView
             android:id="@+id/nameClub"
