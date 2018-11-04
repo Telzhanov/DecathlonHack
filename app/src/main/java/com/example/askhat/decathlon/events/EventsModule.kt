@@ -5,5 +5,5 @@ import com.example.askhat.decathlon.core.createService
 import org.koin.dsl.module.module
 
 val eventsModule = module {
-    factory { createService<EventService>(get(), Constants.URL) }
+    single { createService<EventService>(get(), Constants.URL) }
 }

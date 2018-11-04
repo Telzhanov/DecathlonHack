@@ -12,6 +12,7 @@ import android.view.ViewGroup
 import com.example.askhat.decathlon.R
 import com.example.askhat.decathlon.core.util.Logger
 import com.example.askhat.decathlon.entities.Club
+import com.example.askhat.decathlon.menu.MainMenuActivity
 import com.example.askhat.decathlon.store.ClubService
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -43,7 +44,7 @@ class ClubsFragment: Fragment(), ClubsListAdapter.ClubItemClicked {
 
     @SuppressLint("CheckResult")
     private fun getClubs(){
-        service.getClubs()
+        service.getClubs(MainMenuActivity.user!!.id)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({

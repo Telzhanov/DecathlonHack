@@ -16,7 +16,6 @@ import com.example.askhat.decathlon.menu.MainMenuActivity
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.card_events.view.*
-import org.w3c.dom.Text
 
 class EventListAdapter(var context: Context,var events:ArrayList<Event>):RecyclerView.Adapter<RecyclerView.ViewHolder>(){
     override fun onCreateViewHolder(parent: ViewGroup, p1: Int): RecyclerView.ViewHolder {
@@ -59,7 +58,7 @@ class EventListAdapter(var context: Context,var events:ArrayList<Event>):Recycle
                 .setPositiveButton("Принять участие",object:DialogInterface.OnClickListener{
                     @SuppressLint("CheckResult")
                     override fun onClick(dialog: DialogInterface?, which: Int) {
-                        (context as MainMenuActivity).eventService.subscribe((context as MainMenuActivity).user?.id!!,events[position].id)
+                        (context as MainMenuActivity).eventService.subscribe(MainMenuActivity.user!!.id, events[position].id)
                             .subscribeOn(Schedulers.io())
                             .observeOn(AndroidSchedulers.mainThread())
                             .subscribe {

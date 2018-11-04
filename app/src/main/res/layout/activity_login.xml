@@ -54,7 +54,7 @@
 
         <ImageView
                 android:id="@+id/loginEmailClearBtn"
-                app:srcCompat="@drawable/login_email_clear_btn"
+                android:src="@drawable/login_email_clear_btn"
                 style="@style/LoginClearButton" />
 
     </FrameLayout>
@@ -125,5 +125,5 @@
             android:background="@color/colorPrimary"
             android:text="@string/login_register_text"
             android:textColor="@color/colorWhite" />
-    
+
 </android.support.constraint.ConstraintLayout>

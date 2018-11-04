@@ -7,6 +7,7 @@ import com.bumptech.glide.Glide
 import com.example.askhat.decathlon.R
 import com.example.askhat.decathlon.core.util.Logger
 import com.example.askhat.decathlon.entities.Club
+import com.example.askhat.decathlon.menu.MainMenuActivity
 import com.example.askhat.decathlon.store.ClubService
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -64,7 +65,7 @@ class ClubsDetailsActivity : AppCompatActivity() {
     @SuppressLint("CheckResult")
     private fun subscribe(club: Club){
         club.subscriber = true
-        service.updateClub(club)
+        service.updateClub(club, MainMenuActivity.user!!.id)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
